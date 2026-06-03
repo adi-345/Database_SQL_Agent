@@ -44,7 +44,7 @@ This agent translates natural language into syntactically correct SQLite queries
 
 2. Create a virtual environment and install dependencies:
 
-&#x20;  ```bash
+	```bash
 
-&#x20;  pip install -r requirements.txt
+	pip install -r requirements.txt
 
