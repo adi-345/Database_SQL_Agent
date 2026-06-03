@@ -11,7 +11,6 @@ __pycache__/
 *$py.class
 
 # Database
-# (Uncomment the line below if you don't want the mock DB tracked)
 # company_records.db
 
 # OS Files

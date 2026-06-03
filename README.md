@@ -2,7 +2,7 @@
 
 
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-FF4B4B?style=for-the-badge)](YOUR_SQL_AGENT_URL_HERE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-FF4B4B?style=for-the-badge)](https://databasesqlagent.streamlit.app/)
 
 
 
