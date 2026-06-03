@@ -1,0 +1,18 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database
+# (Uncomment the line below if you don't want the mock DB tracked)
+# company_records.db
+
+# OS Files
+.DS_Store
