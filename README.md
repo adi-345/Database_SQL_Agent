@@ -12,8 +12,7 @@ An intelligent, context-aware SQL Agent built to securely query and analyze inte
 
 ## Overview
 
-This agent translates natural language into syntactically correct SQLite queries, executes them against the database, and synthesizes the data into human-readable insights. It features conversational memory to resolve complex pronouns and follow-up questions, and is wrapped in a strict security firewall to prevent prompt injection and block out-of-scope queries.
-
+This agent translates natural language into syntactically correct PostgreSQL queries, executes them against a live cloud database, and synthesizes the data into human-readable insights. It features conversational memory to resolve complex pronouns and follow-up questions, and is wrapped in a strict security firewall to prevent prompt injection and block out-of-scope queries.
 
 
 ## Tech Stack
@@ -24,7 +23,7 @@ This agent translates natural language into syntactically correct SQLite queries
 
 * **LLM:** OpenAI (`gpt-4o-mini`)
 
-* **Database:** SQLite3
+* **Database:** PostgreSQL (Cloud-hosted via Neon)
 
 
 
@@ -35,6 +34,8 @@ This agent translates natural language into syntactically correct SQLite queries
 * **Security Firewall:** Custom Few-Shot routing mechanism intercepts malicious commands (e.g., `DROP TABLE`) and restricts the agent entirely to the internal data scope.
 
 * **Self-Correcting Queries:** Uses the LangChain SQLToolkit to read schema errors and rewrite queries on the fly without user intervention.
+
+* **Cloud-Native Architecture:** Connects to a remote PostgreSQL instance via SQLAlchemy connection URIs, fully decoupled from local storage.
 
 
 
