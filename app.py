@@ -32,7 +32,8 @@ CRITICAL RULES:
 5. The 'quarter' column in the sales table is plain text (e.g., 'Q1'). NEVER use SQL date/time functions.
 6. HANDLING VAGUE REQUESTS: If a user asks for broad data, provide Total Revenue, Total Units Sold, and an EXHAUSTIVE breakdown of EVERY product. DO NOT skip, summarize, or omit any products from the final list.
 7. STRING MATCHING: Always use case-insensitive matching for product names using LOWER() or LIKE.
-8. CONVERSATION CONTEXT: If the user uses pronouns like "it" or "the other product", look at the Chat History to determine what they mean."""
+8. CONVERSATION CONTEXT: If the user uses pronouns like "it" or "the other product", look at the Chat History to determine what they mean.
+9. Whenever giving an answer related to a product, ALWAYS include the product name in the response for clarity, even if the user doesn't ask for it explicitly."""
 
 sql_agent = create_sql_agent(llm=llm, toolkit=toolkit, agent_type="tool-calling", verbose=True, prefix=agent_prefix, use_query_checker=False)
 
