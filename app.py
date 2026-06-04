@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
-import sqlite3
 import streamlit as st
 from langchain_community.utilities import SQLDatabase
 from langchain_openai import ChatOpenAI
@@ -16,41 +15,9 @@ st.set_page_config(page_title="Atidan SQL Agent", page_icon="📊")
 st.title("📊 Atidan Internal Data Agent")
 st.markdown("Ask me about product pricing, discounts, and quarterly sales.")
 
-# Mock database setup (runs once, replace with real DB for use)
-@st.cache_resource
-def setup_db():
-    db_file = "company_records.db"
-    if not os.path.exists(db_file):
-        conn = sqlite3.connect(db_file)
-        cursor = conn.cursor()
-        cursor.execute("""
-        CREATE TABLE products (
-            product_id INTEGER PRIMARY KEY, name TEXT NOT NULL,
-            price REAL NOT NULL, discount REAL DEFAULT 0.0
-        );""")
-        cursor.execute("""
-        CREATE TABLE sales (
-            sale_id INTEGER PRIMARY KEY, product_id INTEGER,
-            quantity INTEGER NOT NULL, quarter TEXT NOT NULL,
-            FOREIGN KEY(product_id) REFERENCES products(product_id)
-        );""")
-        products = [
-            (1, "Enterprise Cloud License", 1200.00, 0.10),
-            (2, "AI Underwriting Engine v2", 5000.00, 0.25),
-            (3, "Standard Support Tier", 150.00, 0.00),
-            (4, "Premium Security Gateway", 850.00, 0.05)
-        ]
-        sales = [
-            (101, 2, 3, "Q1"), (102, 1, 50, "Q1"), 
-            (103, 3, 120, "Q2"), (104, 2, 5, "Q2"), (105, 4, 12, "Q2")
-        ]
-        cursor.executemany("INSERT INTO products VALUES (?,?,?,?)", products)
-        cursor.executemany("INSERT INTO sales VALUES (?,?,?,?)", sales)
-        conn.commit()
-        conn.close()
-    return SQLDatabase.from_uri("sqlite:///company_records.db")
-
-db = setup_db()
+# --- 1. DB SETUP ---
+# Connect directly to the cloud Postgres server
+db = SQLDatabase.from_uri(os.environ.get("DATABASE_URL"))
 
 # Agent setup
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=os.environ.get("OPENAI_API_KEY"))

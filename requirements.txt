@@ -2,3 +2,4 @@ streamlit
 langchain-core
 langchain-community
 langchain-openai
+psycopg2-binary
